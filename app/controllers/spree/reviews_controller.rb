@@ -23,11 +23,14 @@ class Spree::ReviewsController < Spree::StoreController
     @review.locale = I18n.locale.to_s if Spree::Reviews::Config[:track_locale]
 
     authorize! :create, @review
+
     if @review.save
-      flash[:notice] = Spree.t(:review_successfully_submitted)
-      redirect_to spree.product_path(@product)
-    else
-      render :new
+      # flash[:notice] = Spree.t(:review_successfully_submitted)
+      # redirect_to spree.product_path(@product)
+    end
+    respond_to do |format|
+      format.html {redirect_to spree.product_path(@product)}
+      format.js
     end
   end
 

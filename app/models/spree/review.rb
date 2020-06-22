@@ -6,7 +6,8 @@ class Spree::Review < ActiveRecord::Base
   after_save :recalculate_product_rating, if: :approved?
   after_destroy :recalculate_product_rating
 
-  validates :name, :review, presence: true
+  validates :name, presence: { message: 'must not be blank' }
+  validates :review, presence: { message: 'must not be blank' }
   validates :rating, numericality: {
     only_integer: true,
     greater_than_or_equal_to: 1,
