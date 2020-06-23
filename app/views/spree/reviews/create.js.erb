@@ -1,8 +1,14 @@
+<%debugger%>
 <% if @review.errors.blank? %>
-	$("#notice-msg").html("Review was Successfully submitted");
+	$("#notice-msg").html('<%= Spree.t('pages.product_detail.review.submit_successfuly')%>');
 	$("#notice-msg").addClass("alert alert-success mb-0");
 	$("#notice-msg").fadeOut(10000);
+	setTimeout(function(){
+	    $('#notice-msg').fadeOut(1000, function(){
+	      location.reload(true);
+	    });
+	  });
 	$('#desc-tab').click();
 <% else %>
 	$("#from_error").html("<%= @review.errors.full_messages.join(", ") %>");
-<%end%>	
+<%end%>

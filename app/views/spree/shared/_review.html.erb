@@ -25,5 +25,5 @@
   </div>
 <% end %>
 <%#= link_to Spree.t(:write_your_own_review), new_product_review_path(@product), class: 'btn btn-default', rel: 'nofollow' %>
-<h2 id="review-title">Write a review</h2>
+<h2 id="review-title"><%= Spree.t('pages.common.review_new')%></h2>
 <%= render 'spree/reviews/form', locals: {product: @product } %>

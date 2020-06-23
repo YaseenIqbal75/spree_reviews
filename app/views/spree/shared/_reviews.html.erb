@@ -4,5 +4,5 @@
   <% else %>
     <%= render 'spree/shared/rating', product: @product, review: 0 %>
   <% end %>
-  <a class="write_review_button" href="" onclick="$('a[href=\'#tab-review\']').trigger('click'); return false;">Write a review</a>
+  <a class="write_review_button" href="" onclick="$('a[href=\'#tab-review\']').trigger('click'); return false;"><%= Spree.t('pages.common.review_new')%></a>
 </div>
