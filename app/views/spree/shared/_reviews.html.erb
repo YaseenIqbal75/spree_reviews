@@ -1,8 +1,11 @@
 <div id="reviews">
-  <% if Spree::Reviews::Config[:include_unapproved_reviews] == false and @product.reviews.approved.count == 0 %>
-  	<%= render 'spree/reviews/stars', stars: 0 %>
-  <% else %>
-    <%= render 'spree/shared/rating', product: @product, review: 0 %>
-  <% end %>
-  <a class="write_review_button" href="" onclick="$('a[href=\'#tab-review\']').trigger('click'); return false;"><%= Spree.t('pages.common.review_new')%></a>
+	<% if Spree::Reviews::Config[:include_unapproved_reviews] == false and @product.reviews.approved.count == 0 %>
+		<p class="reviews-none"><%= Spree.t(:no_reviews_available) %></p>
+	<% else %>
+	    <% for review in (Spree::Reviews::Config[:track_locale] ? @product.reviews.localized(I18n.locale) : @product.reviews).default_approval_filter.preview %>
+	      <%= render 'spree/shared/review', review: review %>
+		<% end %>
+	<% end %>
+<h2 id="review-title"><%= Spree.t('pages.common.review_new')%></h2>
+<%= render 'spree/reviews/form', locals: {product: @product } %>
 </div>

@@ -6,13 +6,13 @@ class Spree::Review < ActiveRecord::Base
   after_save :recalculate_product_rating, if: :approved?
   after_destroy :recalculate_product_rating
 
-  validates :name, presence: { message: Spree.t('pages.product_detail.review.common_error') }
-  validates :review, presence: { message: Spree.t('pages.product_detail.review.common_error') }
+  validates :name, presence: { message: Spree.t('pages.review.common_error') }
+  validates :review, presence: { message: Spree.t('pages.review.common_error') }
   validates :rating, numericality: {
     only_integer: true,
     greater_than_or_equal_to: 1,
     less_than_or_equal_to: 5,
-    message: Spree.t('pages.product_detail.review.rating_error')
+    message: Spree.t('pages.review.rating_error')
   }
 
   default_scope { order('spree_reviews.created_at DESC') }

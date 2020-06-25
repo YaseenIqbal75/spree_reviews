@@ -1,6 +1,6 @@
 <%= form_for @review_new, url: product_reviews_path(@product), id: 'review_form', html: { method: :post}, :remote=>true do |f| %> 
   <%= render 'spree/shared/error_messages', target: @review_new.rating %>
-  <div id="from_error"></div>
+  <div id="review_messages"></div>
   <div class="contacts-form">
     <div class="form-group">
       <%= f.hidden_field :rating, value: '',id: 'user_raiting' %>

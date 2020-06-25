@@ -1,5 +1,5 @@
-<% if @review.errors.blank? %>
-	$("#notice-msg").html('<%= Spree.t('pages.product_detail.review.submit_successfuly')%>');
+<% if @review.save %>
+	$("#notice-msg").html('<%= Spree.t('pages.review.submit_successfuly')%>');
 	$("#notice-msg").addClass("alert alert-success mb-0");
 	$("#notice-msg").fadeOut(10000);
 	setTimeout(function(){
@@ -9,5 +9,5 @@
 	  });
 	$('#desc-tab').click();
 <% else %>
-	$("#from_error").html("<%= @review.errors.full_messages.join(", ") %>");
+	$("#review_messages").html("<%= @review.errors.full_messages.join(", ") %>");
 <%end%>
