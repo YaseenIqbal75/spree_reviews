@@ -1,7 +1,7 @@
 require 'spree_core'
 require 'spree_reviews/engine'
 require 'spree_reviews/version'
-# require 'coffee_script'
+require 'coffee_script'
 require 'sass/rails'
 
 module Spree
