@@ -1,4 +1,4 @@
-<div id="review">
+<div id="reviews">
   <% if Spree::Reviews::Config[:include_unapproved_reviews] == false and @product.reviews.approved.count == 0 %>
 	<%= render 'spree/reviews/stars', stars: 0 %>
   <% else %>

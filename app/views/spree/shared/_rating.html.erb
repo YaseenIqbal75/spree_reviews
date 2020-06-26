@@ -3,7 +3,7 @@
 <div class="ratings">
   <p class="ratings-stars">
     <span title="<%= txt_stars(stars) %>">
-      <%= render 'spree/reviews/stars', stars: stars %>
+      <%= render 'spree/reviews/stars', stars: product.avg_rating %>
     </span>
   </p>
   </div>
