@@ -1,6 +1,5 @@
 <%= form_for Spree::Review.new, url: product_reviews_path(@product), id: 'review_form', html: { method: :post}, :remote=>true do |f| %> 
   <%= render 'spree/shared/error_messages', target: @review %>
-  <div id="review_messages"></div>
   <div class="contacts-form">
     <div class="form-group">
       <%= f.hidden_field :rating, value: '',id: 'user_raiting' %>
@@ -14,6 +13,8 @@
       <%= f.label :review %>
       <%= f.text_area :review, wrap: 'virtual', rows: 10, cols: 50, require: true ,class: 'form-control',id: 'user_review' %>
     </div>
+    <span class="text-danger">Note:</span>
+    <span id="review_messages"></span>
     <div class="form-group">
      <% if Spree::Reviews::Config[:show_identifier] %>
         <div class="checkbox">
