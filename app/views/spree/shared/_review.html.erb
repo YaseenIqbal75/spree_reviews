@@ -1,29 +1,39 @@
 <div class="review" itemprop="reviews" itemscope itemtype="http://schema.org/Review">
-  <span class="reviews-rating" title="<%= txt_stars(review.rating) %>">
-    <%= render 'spree/reviews/stars', stars: review.rating %>
-  </span>
-  <span itemprop="name"><%= review.title %></span>
-  <br/>
-  <span class="attribution"><%= Spree.t(:submitted_on) %>
-    <strong><%= l review.created_at.to_date %></strong>
-  </span>
-  <span itemprop="datePublished" content="<%= review.created_at.to_date.to_s %>"></span>
-  <span itemprop="reviewRating" content="<%= review.rating %>"></span>
-  <% if review.show_identifier %>
-    <% if Spree::Reviews::Config[:show_email] && review.user %>
-      <span itemprop="author"><%= review.user.email %></span>
-    <% else %>
-      <span itemprop="author"><%= review.name %></span>
-    <% end %>
-  <% else %>
-    <span itemprop="author"><%= Spree.t(:anonymous) %></span>
-  <% end %>
-  <div itemprop="reviewBody">
-    <%= simple_format(review.review) %>
+  <div id="review">
+    <table class="table table-striped table-bordered">
+      <tbody>
+        <tr>
+          <td style="width: 50%;">
+            <% if review.show_identifier %>
+              <% if Spree::Reviews::Config[:show_email] && review.user %>
+                <span itemprop="name"><%= review.user.email %></span>
+              <% else %>
+                <span itemprop="name"><%= review.name %></span>
+              <% end %>
+            <% else %>
+              <span itemprop="name"><%= Spree.t(:anonymous) %></span>
+            <% end %>
+          </td>
+          <td class="text-right">
+            <span class="attribution">
+              <%= review.created_at.strftime('%d/%m/%Y') %>
+            </span>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            <p itemprop="reviewBody"><%= review.review %></p>
+            <div class="ratings">
+              <div class="rating-box">
+                <span itemprop="reviewRating" class="reviews-rating" title="<%= txt_stars(review.rating) %>">
+                  <%= render 'spree/reviews/stars', stars: review.rating %>
+                </span>
+              </div>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="text-right"></div>
   </div>
-  <% if Spree::Reviews::Config[:feedback_rating] && (!Spree::Reviews::Config[:require_login] || spree_current_user) %>
-    <div class="feedback_review" id="feedback_review_<%= review.id %>">
-      <%= render 'spree/feedback_reviews/form', review: review %>
-    </div>
-  <% end %>
 </div>

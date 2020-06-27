@@ -1,0 +1,9 @@
+<% if @review.save %>
+	$("#notice-msg").show()
+	$("#notice-msg").html('<%= Spree.t('pages.review.submit_successfuly')%>');
+	$("#notice-msg").addClass("alert alert-success mb-0");
+	$("#notice-msg").fadeOut(10000);
+	$('#desc-tab').click();
+<% else %>
+	$("#review_messages").html("<%= @review.errors.full_messages.join(", ") %>");
+<%end%>
