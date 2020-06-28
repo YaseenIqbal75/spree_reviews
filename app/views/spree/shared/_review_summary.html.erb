@@ -1,10 +1,6 @@
 <div id="reviews">
-  <% if Spree::Reviews::Config[:include_unapproved_reviews] == false and @product.reviews.approved.count == 0 %>
-	<%= render 'spree/reviews/stars', stars: 0 %>
-  <% else %>
     <%= render 'spree/shared/rating', product: @product, review: 0 %>
-  <% end %>
-  <% if !Spree::Reviews::Config[:require_login] || spree_current_user %>
-	<a class="write_review_button" href="" ><%= Spree.t('pages.common.review_new')%></a>
+  <% if Spree::Reviews::Config[:require_login] || spree_current_user %>
+	<a class="write_review_button" href=""><%= Spree.t('pages.common.review_new')%></a>
   <% end %>
 </div>
